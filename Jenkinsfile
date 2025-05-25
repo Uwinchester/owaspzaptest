@@ -31,7 +31,7 @@ pipeline {
                         docker run --rm \
                             -t zaproxy/zap-stable \
                             zap-baseline.py \
-                            -t http://104.248.252.219:8081
+                            -t http://104.248.252.219:8881/WebApp/
                         '''
                 }
             }
