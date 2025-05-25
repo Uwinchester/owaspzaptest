@@ -29,7 +29,7 @@ pipeline {
                     sh '''
                         docker pull zaproxy/zap-stable
                         docker run --rm \
-                            -t owasp/zap2docker-stable \
+                            -t zaproxy/zap-stable \
                             zap-baseline.py \
                             -t http://http://104.248.252.219:8081
                         '''
