@@ -20,7 +20,7 @@ pipeline {
             steps {
                 echo 'deploying to tomcat'
                 sh 'docker rm -f pfa_app'
-                sh "docker run -d -p 8881:8080 --name pfa_app uwinchester/pfa_app"
+                sh "docker run -d -p 8881:9090 --name pfa_app uwinchester/pfa_app"
             }
         }
         stage('DAST') {
@@ -31,7 +31,7 @@ pipeline {
                         docker run --rm \
                             -t zaproxy/zap-stable \
                             zap-baseline.py \
-                            -t http://104.248.252.219:8881/WebApp/
+                            -t http://104.248.252.219:8881/
                         '''
                 }
             }
