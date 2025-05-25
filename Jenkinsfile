@@ -44,6 +44,7 @@ pipeline {
     post {
         always {
             publishHTML([
+                allowMissing: true,
                 reportDir: '.',
                 reportFiles: 'zap-report.html', 
                 reportName: 'ZAP Report',
