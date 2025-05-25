@@ -29,13 +29,15 @@ pipeline {
                 script {
                     sh '''
                         docker pull zaproxy/zap-stable
-                        docker run --rm \
+                        docker run --rm --name zap_scan \
                             -v ${WORKSPACE}:/zap/ \
                             -t zaproxy/zap-stable \
                             zap-baseline.py \
                             -t http://104.248.252.219:9090/ \
                             -r /zap/zap-report.html
                         '''
+                    sh 'docker exec zap_scan ls -l /zap'
+                    
                     
                 }
                 echo "[INFO] ZAP scan completed. Check the report if the build fails."
