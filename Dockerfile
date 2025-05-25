@@ -8,8 +8,9 @@ RUN apk add --no-cache wget tar
 RUN wget https://downloads.apache.org/tomcat/tomcat-10/v10.1.40/bin/apache-tomcat-10.1.40.tar.gz && \
     tar xvf apache-tomcat-10.1.40.tar.gz -C /opt/ && \
     rm apache-tomcat-10.1.40.tar.gz
+RUN sed -i 's/port="8080"/port="9090"/' /opt/apache-tomcat-10.1.40/conf/server.xml
 
-EXPOSE 8080
+EXPOSE 9090
 
 COPY --from=build /app/target/WebApp.war /opt/apache-tomcat-10.1.40/webapps/
 
