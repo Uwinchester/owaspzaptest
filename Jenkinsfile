@@ -32,7 +32,8 @@ pipeline {
                         docker run --rm \
                             -t zaproxy/zap-stable \
                             zap-baseline.py \
-                            -t http://104.248.252.219:9090/
+                            -t http://104.248.252.219:9090/ \
+                            -r zap-report.html
                         '''
                     
                 }
