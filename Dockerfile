@@ -12,4 +12,4 @@ EXPOSE 8080
 
 COPY --from=build /app/target/WebApp.war /opt/apache-tomcat-10.1.40/webapps/
 
-CMD ["/opt/apache-tomcat-10.1.40/bin/catalina.sh", "run"]
+CMD ["/opt/apache-tomcat-10.1.41/bin/catalina.sh", "run"]
