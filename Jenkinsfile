@@ -16,7 +16,7 @@ pipeline {
             }
         }
 
-        stage ('deploy to tomcat for DAST') {
+        stage ('deployement') {
             steps {
                 echo 'deploying to tomcat'
                 sh 'docker-compose down --rmi local --volumes --remove-orphans || true'
@@ -36,7 +36,7 @@ pipeline {
                             -u $(id -u):$(id -g) \
                             -t zaproxy/zap-stable \
                             zap-baseline.py \
-                            -t http://104.248.252.219:9090/ \
+                            -t http://104.248.252.219/ \
                             -r zap-report.html
                         '''
                     
