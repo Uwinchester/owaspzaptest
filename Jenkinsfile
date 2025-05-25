@@ -27,7 +27,7 @@ pipeline {
             steps{
                 script {
                     sh '''
-                        docker pull owasp/zap2docker-stable
+                        docker pull zaproxy/zap-stable
                         docker run --rm \
                             -t owasp/zap2docker-stable \
                             zap-baseline.py \
