@@ -44,6 +44,8 @@ pipeline {
     }
     post {
         always {
+            archiveArtifacts 'zap-report.html'
+
             publishHTML target: [
                 allowMissing: true,
                 reportDir: '.',
