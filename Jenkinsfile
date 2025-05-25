@@ -19,8 +19,8 @@ pipeline {
         stage ('deploy to tomcat for DAST') {
             steps {
                 echo 'deploying to tomcat'
-                sh 'docker-compose down --volumes --remove-orphans'
-                sh 'docker rm -f pfa_app'
+                sh 'docker-compose down --rmi local --volumes --remove-orphans || true'
+                sh 'docker rm -f uwinchester/pfa_app'
                 sh "docker-compose up -d"
             }
         }
