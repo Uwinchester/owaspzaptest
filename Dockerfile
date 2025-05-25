@@ -3,6 +3,7 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 RUN mvn clean package
+RUN ls -l /app/target/*.war
 FROM amazoncorretto:21-alpine-jdk
 RUN apk add --no-cache wget tar
 RUN wget https://downloads.apache.org/tomcat/tomcat-10/v10.1.41/bin/apache-tomcat-10.1.41.tar.gz && \
