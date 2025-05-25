@@ -43,13 +43,13 @@ pipeline {
     }
     post {
         always {
-            publishHTML([
+            publishHTML target: [
                 allowMissing: true,
                 reportDir: '.',
                 reportFiles: 'zap-report.html', 
                 reportName: 'ZAP Report',
                 keepAll: true
-            ])
+            ]
         }
     }
 }
