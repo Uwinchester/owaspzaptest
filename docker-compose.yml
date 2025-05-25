@@ -3,7 +3,7 @@ services:
     image: uwinchester/pfa_app  
     container_name: tomcat-devsecops
     ports:
-      - "8881:8080"  
+      - "8080"  
     networks:
       - devsecops-net
 
