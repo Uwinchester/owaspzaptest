@@ -46,7 +46,7 @@ pipeline {
             publishHTML([
                 reportDir: '.',
                 reportFiles: 'zap-report.html', 
-                reportName: 'ZAP Report'
+                reportName: 'ZAP Report',
                 keepAll: true
             ])
         }
