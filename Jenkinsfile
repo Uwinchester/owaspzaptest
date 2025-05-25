@@ -27,33 +27,32 @@ pipeline {
         stage('DAST') {
             steps{
                 script {
+                    sh 'mkdir -p zap-reports'
+                    
                     sh '''
                         docker pull zaproxy/zap-stable
-                        docker run --rm --name zap_scan \
-                            -v ${WORKSPACE}:/zap/ \
+                        docker run --rm \
+                            -v "$WORKSPACE/zap-reports:/zap/wrk" \
                             -t zaproxy/zap-stable \
                             zap-baseline.py \
                             -t http://104.248.252.219:9090/ \
-                            -r /zap/zap-report.html
+                            -r zap-report.html
                         '''
-                    sh 'docker exec zap_scan ls -l /zap'
-                    
                     
                 }
                 echo "[INFO] ZAP scan completed. Check the report if the build fails."
-                archiveArtifacts 'zap-report.html'
+                archiveArtifacts 'zap-reports/zap-report.html'
             }
         }
     }
     post {
         always {
-            archiveArtifacts 'zap-report.html'
-
+            
             publishHTML target: [
                 allowMissing: true,
                 reportDir: '.',
                 reportFiles: 'zap-report.html', 
-                reportName: 'ZAP Report',
+                reportName: 'zap-reports',
                 keepAll: true
             ]
         }
