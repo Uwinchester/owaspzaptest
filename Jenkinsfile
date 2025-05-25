@@ -51,7 +51,7 @@ pipeline {
             
             publishHTML target: [
                 allowMissing: true,
-                reportDir: '.',
+                reportDir: './zap-reports/',
                 reportFiles: 'zap-report.html', 
                 reportName: 'zap-reports',
                 keepAll: true
