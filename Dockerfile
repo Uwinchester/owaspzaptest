@@ -3,7 +3,6 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 RUN mvn clean package
-RUN ls -l /app/target/*.war
 FROM amazoncorretto:21-alpine-jdk
 RUN apk add --no-cache wget tar
 RUN wget https://downloads.apache.org/tomcat/tomcat-10/v10.1.41/bin/apache-tomcat-10.1.41.tar.gz && \
@@ -12,5 +11,4 @@ RUN wget https://downloads.apache.org/tomcat/tomcat-10/v10.1.41/bin/apache-tomca
 EXPOSE 8080
 
 COPY --from=build /app/target/WebApp.war /opt/apache-tomcat-10.1.41/webapps/
-RUN ls -l /opt/apache-tomcat-10.1.41/webapps/
 CMD ["/opt/apache-tomcat-10.1.41/bin/catalina.sh", "run"]
