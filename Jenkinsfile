@@ -47,6 +47,7 @@ pipeline {
                 reportDir: '.',
                 reportFiles: 'zap-report.html', 
                 reportName: 'ZAP Report'
+                keepAll: true
             ])
         }
     }
