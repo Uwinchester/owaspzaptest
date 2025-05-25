@@ -30,10 +30,11 @@ pipeline {
                     sh '''
                         docker pull zaproxy/zap-stable
                         docker run --rm \
+                            -v ${WORKSPACE}:/zap/wrk \
                             -t zaproxy/zap-stable \
                             zap-baseline.py \
                             -t http://104.248.252.219:9090/ \
-                            -r zap-report.html
+                            -r /zap/wrk/zap-report.html
                         '''
                     
                 }
