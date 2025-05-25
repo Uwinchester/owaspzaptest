@@ -11,6 +11,6 @@ RUN wget https://downloads.apache.org/tomcat/tomcat-10/v10.1.41/bin/apache-tomca
     rm apache-tomcat-10.1.41.tar.gz
 EXPOSE 8080
 
-COPY --from=build /app/target/WebApp.war /opt/apache-tomcat-10.1.41/webapps/WebApp.war
-
+COPY --from=build /app/target/WebApp.war /opt/apache-tomcat-10.1.41/webapps/
+RUN ls -l /opt/apache-tomcat-10.1.41/webapps/
 CMD ["/opt/apache-tomcat-10.1.41/bin/catalina.sh", "run"]
