@@ -20,7 +20,7 @@ pipeline {
             steps {
                 echo 'deploying to tomcat'
                 sh 'docker rm -f pfa_app'
-                sh "docker run -d -p 9090:9090 --name pfa_app uwinchester/pfa_app"
+                sh "docker-compose up -d"
             }
         }
         stage('DAST') {
