@@ -20,7 +20,6 @@ pipeline {
             steps {
                 echo 'deploying to tomcat'
                 sh 'docker-compose down --volumes --remove-orphans'
-                sh 'docker system prune -af --volumes'
                 sh 'docker rm -f pfa_app'
                 sh "docker-compose up -d"
             }
