@@ -34,8 +34,20 @@ pipeline {
                             zap-baseline.py \
                             -t http://104.248.252.219:9090/
                         '''
+                    
                 }
+                echo "[INFO] ZAP scan completed. Check the report if the build fails."
+                archiveArtifacts 'zap-report.html'
             }
+        }
+    }
+    post {
+        always {
+            publishHTML([
+                reportDir: '.',
+                reportFiles: 'zap-report.html', 
+                reportName: 'ZAP Report'
+            ])
         }
     }
 }
