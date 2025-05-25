@@ -28,11 +28,12 @@ pipeline {
             steps{
                 script {
                     sh 'mkdir -p zap-reports'
-                    
+
                     sh '''
                         docker pull zaproxy/zap-stable
                         docker run --rm \
                             -v "$WORKSPACE/zap-reports:/zap/wrk" \
+                            -u $(id -u):$(id -g) \
                             -t zaproxy/zap-stable \
                             zap-baseline.py \
                             -t http://104.248.252.219:9090/ \
