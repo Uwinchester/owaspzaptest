@@ -16,12 +16,12 @@ pipeline {
             }
         }
 
-        stage ('deployement') {
+        stage ('deployement for testing') {
             steps {
                 echo 'deploying to tomcat'
                 sh 'docker-compose down --rmi local --volumes --remove-orphans || true'
                 sh 'docker rm -f uwinchester/pfa_app'
-                sh "docker-compose up -d"
+                sh "docker-compose up -d -f docker-compose-waf.yml"
             }
         }
         stage('DAST') {
@@ -45,6 +45,14 @@ pipeline {
                 archiveArtifacts 'zap-reports/zap-report.html'
             }
         }
+        stage('Deployment Approval') {
+            steps {
+                script {
+                    input message: 'Do you approve the deployment?', ok: 'Yes'
+                }
+            }
+        }
+
     }
     post {
         always {
